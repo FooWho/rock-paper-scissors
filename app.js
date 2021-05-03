@@ -18,38 +18,46 @@ function playRound(humanSelection, computerSelection) {
     switch (humanSelection) {
         case "ROCK" : 
         if (computerSelection === "Scissors") {
-            return "You win! Rock beats Scissors.";
+            return 1;
         } else if (computerSelection === "Paper") {
-            return "You loose! Paper beats Rock.";
+            return -1;
         } else {
-            return "You tie! You both selected Rock."
+            return 0;
         }
         break;
         case "PAPER" : 
         if (computerSelection === "Rock") {
-            return "You win! Paper beats Rock.";
+            return 1;
         } else if (computerSelection === "Scissors") {
-            return "You loose! Scissors beats Paper.";
+            return -1;
         } else {
-            return "You tie! You both selected Paper."
+            return 0;
         }
         break;
         case "SCISSORS" : 
         if (computerSelection === "Paper") {
-            return "You win! Scissors beats Paper.";
+            return 1;
         } else if (computerSelection === "Rock") {
-            return "You loose! Rock beats Scissors";
+            return -1;
         } else {
-            return "You tie! You both selected Scissors."
+            return 0;
         }
         break;
     }
 
 }
 
-for (let i = 0; i < 5; i++) {
-    humanSelection = humanPlay();
-    computerSelection = computerPlay();
-
-    alert(playRound(humanSelection, computerSelection));
+function game() {
+    let lastResult;
+    let gameResult = 0;
+    for (let i = 0; i < 5; i++) {
+        humanSelection = humanPlay();
+        computerSelection = computerPlay();
+        lastResult = playRound(humanSelection, computerSelection);
+        gameResult += lastResult;
+        lastResult > 0 ? console.log("You win!") : lastResult < 0 ? console.log("You lost!") : console.log("It was a tie!");
+    }
+    console.log(`Final result is a score of: ${gameResult}`);
 }
+
+game();
